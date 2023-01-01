@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: 123456
+    url: jdbc:postgresql://localhost:5432/zfile?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: postgres
+  h2:
+    console:
+      enabled: ${zfile.debug}
+      path: /h2-console
+      settings:
+        web-allow-others: true

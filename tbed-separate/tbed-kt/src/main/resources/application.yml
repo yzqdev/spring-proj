@@ -1,0 +1,35 @@
+CROS_ALLOWED_ORIGINS: http://localhost:8080, http://localhost:8090
+webhost: http://localhost:8090
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: /HellohaoData/tbedlog
+  level:
+    cn:
+      hellohao:
+        dao: debug
+multipart:
+  maxFileSize: 10240KB
+  maxRequestSize: 10240KB
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  port: 8089
+spring:
+
+  http:
+    multipart:
+      location: /data/upload_tmp
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  profiles:
+    active: dev
+  freemarker:
+    suffix: .html
+    cache: false
+    content-type: text/html
+systemupdate: '2020-05-26'
+webName: hellowallpage
+weblinks: <li><a href="https://github.com/Hello-hao/HellohaoWallpaper" class="icon fa-github"><span class="label">GitHub</span></a></li><li><a href="http://hellohao.cn" class="icon fa-dribbble"><span class="label">Hellohao博客</span></a></li>

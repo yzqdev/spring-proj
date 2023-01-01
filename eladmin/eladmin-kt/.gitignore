@@ -1,0 +1,15 @@
+logs
+*.log
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+### IDEA ###
+.idea/*
+*.iml
+*/target/*
+*/*.iml
+/.gradle/
+/eladmin-system/src/main/resources/rebel.xml
+rebel.xml

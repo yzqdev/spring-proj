@@ -1,0 +1,30 @@
+
+
+<html>
+<head><title></title><meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title></head>
+<body style="font-size:12px">
+<p>
+  wangEditor 配置文字颜色和背景色
+</p>
+
+<div id='app'>   <div id="div1"></div>  </div>
+<script src="https://unpkg.com/wangeditor/dist/wangEditor.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+<script>
+
+  new Vue({
+    el:'#app',
+    mounted(){
+      const E = window.wangEditor;
+      const editor = new E("#div1");
+      // 配置颜色（文字颜色、背景色）
+      editor.config.colors = ["#000000", "#eeece0", "#1c487f", "#4d80bf"];
+      editor.create()
+    }
+  })
+</script>
+</body>
+</html>

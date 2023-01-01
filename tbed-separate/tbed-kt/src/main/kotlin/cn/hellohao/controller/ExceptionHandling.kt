@@ -1,0 +1,54 @@
+package cn.hellohao.controller
+
+import cn.hellohao.exception.StorageSourceInitException
+import cn.hellohao.util.Print
+import org.springframework.ui.Model
+import org.springframework.web.HttpRequestMethodNotSupportedException
+import org.springframework.web.bind.annotation.ControllerAdvice
+import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.servlet.ModelAndView
+import java.net.SocketException
+
+/**
+ * @author Hellohao
+ * @version 1.0
+ * @date 2019/8/6 8:57
+ */
+@ControllerAdvice
+class ExceptionHandling {
+    @ExceptionHandler
+    fun test(ssie: StorageSourceInitException): ModelAndView {
+        val modelAndView = ModelAndView("index")
+        Print.Normal("异常拦截成功：" + ssie.message)
+        modelAndView.addObject("error", ssie.message)
+        //返回错误信息，并显示给用户
+        return modelAndView
+    }
+
+    @ExceptionHandler
+    fun test4(e: SocketException): String? {
+        val modelAndView = ModelAndView("/index")
+        Print.Normal("存储源配置不正确，初始化失败" + e.message)
+        e.printStackTrace()
+        modelAndView.addObject("error", e.message)
+        return e.message
+    }
+
+    @ExceptionHandler
+    fun test3(e: Exception): String? {
+        val modelAndView = ModelAndView("/index")
+        Print.Normal("系统内部错误：" + e.message)
+        e.printStackTrace()
+        modelAndView.addObject("error", e.message)
+        return e.message
+    }
+
+    @ExceptionHandler
+    fun test3(e: HttpRequestMethodNotSupportedException, model: Model): String {
+        val modelAndView = ModelAndView("/index")
+        Print.Normal("URL访问类型不正确：" + e.message)
+        modelAndView.addObject("error", "URL访问类型不正确。")
+        model.addAttribute("error", "URL访问类型不正确。")
+        return "exception"
+    }
+}

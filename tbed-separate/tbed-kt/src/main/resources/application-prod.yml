@@ -1,0 +1,59 @@
+CROS_ALLOWED_ORIGINS: http://localhost:8080, http://localhost:8090
+logging:
+  config: classpath:logback-spring.xml
+#  file:
+#    path: /HellohaoData/tbedlog
+  level:
+    cn:
+      hellohao:
+        dao: debug
+multipart:
+  maxFileSize: 10240KB
+  maxRequestSize: 10240KB
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+spring:
+  datasource:
+    driver-class-name: ort.postgresql.Driver
+    druid:
+      filter:
+        commons-log:
+          enabled: false
+        config:
+          enabled: false
+        log4j:
+          enabled: false
+        log4j2:
+          enabled: false
+        slf4j:
+          enabled: false
+        stat:
+          enabled: false
+        wall:
+          enabled: false
+      stat-view-servlet:
+        allow: 127.0.0.1
+        enabled: false
+        login-password: 52BNmXPJL0rQQ3CU
+        login-username: hellohao@dealer
+        reset-enable: false
+      web-stat-filter:
+        enabled: false
+        exclusions: false
+        session-stat-enable: false
+    password: 123456
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:postgresql://localhost:5432/tbed?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: postgres
+  http:
+    multipart:
+      location: /data/upload_tmp
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  thymeleaf:
+    cache: false
+    suffix: .html
+systemupdate: '2020-05-26'

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.EmailConfigMapper">
+
+    <select id="getEmail" resultType="cn.hellohao.model.entity.EmailConfig">
+        select * from email_config where id = '1'
+    </select>
+
+    <update id="updateEmail" parameterType="cn.hellohao.model.entity.EmailConfig">
+        UPDATE email_config
+        <set>
+            <if test="emails != null">
+                emails = #{emails},
+            </if>
+            <if test="emailKey != null">
+                email_key = #{emailKey},
+            </if>
+            <if test="emailUrl != null">
+                email_url = #{emailUrl},
+            </if>
+            <if test="port != null">
+                port = #{port},
+            </if>
+            <if test="emailName != null">
+                email_name = #{emailName},
+            </if>
+            <if test="using != null">
+                using = #{using},
+            </if>
+        </set>
+        WHERE
+            id = 1
+    </update>
+
+
+
+</mapper>

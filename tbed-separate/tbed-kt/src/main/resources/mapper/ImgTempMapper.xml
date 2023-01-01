@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.ImgTempMapper">
+
+    <resultMap id="BaseResultMap" type="cn.hellohao.model.entity.ImgTemp">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="img_uid" column="img_uid" jdbcType="VARCHAR"/>
+        <result property="del_time" column="del_time" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,img_uid,del_time
+    </sql>
+    <!--    点赞累计增加-->
+    <update id="addGreatForImguid">
+        UPDATE sysUser
+        <set>
+            <if test="great != null">
+                great = great+1,
+            </if>
+
+        </set>
+        where img_uid=#{img_uid}
+    </update>
+
+    <!--    根据日期查询要删除的图片-->
+    <select id="selectDelImgUidList" parameterType="java.lang.String" resultType="cn.hellohao.model.entity.Images">
+        SELECT img_data.img_uid,
+               img_data.source,
+               img_data.img_name
+        FROM img_temp
+                 LEFT JOIN img_data on img_temp.img_uid = img_data.img_uid
+        where img_temp.del_time &lt;= to_date(#{datatime}, 'YYYY-MM-DD HH24:MI:ss')
+    </select>
+
+    <!--    此sql会同时删除img_data 和 img_temp两个表的数据 -->
+    <delete id="delImgAndExpbak" parameterType="java.lang.String">
+        DELETE
+        from img_temp using img_data LEFT JOIN img_data ON img_temp.img_uid = img_data.img_uid
+        WHERE img_data.img_uid = #{imgUid}
+    </delete>
+
+    <delete id="delImgAndExp" parameterType="java.lang.String">
+        DELETE
+        from img_temp
+        WHERE img_temp.img_uid = #{imgUid};
+        delete
+        from img_data
+        where img_uid = #{imgUid}
+    </delete>
+
+    <insert id="insertImgExp" parameterType="cn.hellohao.model.entity.ImgTemp">
+        insert into img_temp (id, img_uid, del_time)
+        values (#{id}, #{imgUid}, #{delTime})
+    </insert>
+
+
+</mapper>

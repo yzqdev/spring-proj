@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.ConfigMapper">
+
+    <select id="getSourceype" resultType="cn.hellohao.model.entity.Config">
+        select * from config where id = '1'
+    </select>
+
+    <update id="setSourceype" parameterType="cn.hellohao.model.entity.Config">
+        UPDATE config
+        <set>
+            <if test="sourcekey != null">
+                sourcekey = #{sourcekey},
+            </if>
+            <if test="emails != null">
+                emails = #{emails},
+            </if>
+            <if test="webname != null">
+                webname = #{webname},
+            </if>
+            <if test="explain != null">
+                explain = #{explain},
+            </if>
+            <if test="video != null">
+                video = #{video},
+            </if>
+            <if test="backtype != null">
+                backtype = #{backtype},
+            </if>
+            <if test="links != null">
+                links = #{links},
+            </if>
+            <if test="notice != null">
+                notice = #{notice},
+            </if>
+            <if test="baidu != null">
+                baidu = #{baidu},
+            </if>
+            <if test="domain != null">
+                domain = #{domain},
+            </if>
+            <if test="background1 != null">
+                background1 = #{background1},
+            </if>
+            <if test="background2 != null">
+                background2 = #{background2},
+            </if>
+
+            <if test="webms != null">
+                webms = #{webms},
+            </if>
+            <if test="webkeywords != null">
+                webkeywords = #{webkeywords},
+            </if>
+            <if test="webfavicons != null">
+                webfavicons = #{webfavicons},
+            </if>
+
+            <if test="websubtitle != null">
+                websubtitle = #{websubtitle},
+            </if>
+            <if test="logo != null">
+                logo = #{logo},
+            </if>
+            <if test="aboutInfo != null">
+                about_info = #{aboutInfo},
+            </if>
+
+
+        </set>
+        where id=1
+    </update>
+
+
+</mapper>

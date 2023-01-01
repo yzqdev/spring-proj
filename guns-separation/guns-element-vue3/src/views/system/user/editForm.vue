@@ -1,0 +1,493 @@
+/* eslint-disable vue/no-template-shadow */
+<template>
+  <el-dialog
+    title="编辑用户"
+    :width="900"
+    :visible="visible"
+    :confirmLoading="confirmLoading"
+    @ok="handleSubmit"
+    @cancel="handleCancel"
+  >
+    <a-spin :spinning="confirmLoading">
+      <el-divider orientation="left">基本信息</el-divider>
+      <el-row :gutter="24">
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              style="display: none;"
+            >
+              <el-input v-decorator="['id']" />
+            </el-form-item>
+            <el-form-item
+              label="账号"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <el-input placeholder="请输入账号" v-decorator="['account', {rules: [{required: true, min: 5, message: '请输入至少五个字符的账号！'}]}]" />
+            </el-form-item>
+          </el-form>
+        </el-col>
+        <el-col :md="12" :sm="24" >
+          <el-form :form="form">
+            <el-form-item
+              label="姓名"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <el-input placeholder="请输入姓名" v-decorator="['name', {rules: [{required: true, message: '请输入姓名！'}]}]" />
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+      <el-row :gutter="24">
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="昵称"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <el-input placeholder="请输入昵称" v-decorator="['nickName']" />
+            </el-form-item>
+          </el-form>
+        </el-col>
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="生日"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <a-date-picker placeholder="请选择生日" @change="onChange" style="width: 100%" v-decorator="['birthday']" />
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+      <el-row :gutter="24">
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="性别"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+            >
+              <el-radio-group v-decorator="['sex',{rules: [{ required: true, message: '请选择性别！' }]}]" >
+                <el-radio :value="1">男</el-radio>
+                <el-radio :value="2">女</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-form>
+        </el-col>
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="邮箱"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <el-input placeholder="请输入邮箱" v-decorator="['email']" />
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+      <el-row :gutter="24">
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="手机号"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <el-input placeholder="请输入手机号" v-decorator="['phone',{rules: [{ required: true, message: '请输入手机号！' }]}]" />
+            </el-form-item>
+          </el-form>
+        </el-col>
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="电话"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <el-input placeholder="请输入电话" v-decorator="['tel']" />
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+      <el-divider orientation="left">员工信息</el-divider>
+      <el-row :gutter="24">
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="机构"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <a-tree-select
+                v-decorator="['sysEmpParam.orgId', {rules: [{ required: true, message: '请选择机构！' }]}]"
+                style="width: 100%"
+                :dropdownStyle="{ maxHeight: '300px', overflow: 'auto' }"
+                :treeData="orgTree"
+                placeholder="请选择机构"
+                treeDefaultExpandAll
+                @change="e => initrOrgName(e)"
+              >
+                <span slot="title" slot-scope="{ id }">{{ id }}</span>
+              </a-tree-select>
+            </el-form-item>
+            <el-form :form="form">
+              <el-form-item v-show="false">
+                <el-input v-decorator="['sysEmpParam.orgName']" />
+              </el-form-item>
+            </el-form>
+          </el-form>
+        </el-col>
+        <el-col :md="12" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="工号"
+              :labelCol="labelCol"
+              :wrapperCol="wrapperCol"
+              has-feedback
+            >
+              <el-input placeholder="请输入工号" v-decorator="['sysEmpParam.jobNum']" />
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+      <el-row :gutter="24">
+        <el-col :md="24" :sm="24">
+          <el-form :form="form">
+            <el-form-item
+              label="职位信息"
+              :labelCol="labelCol_JG"
+              :wrapperCol="wrapperCol_JG"
+              has-feedback
+            >
+              <el-select
+                mode="multiple"
+                style="width: 100%"
+                placeholder="请选择职位信息"
+                v-decorator="['sysEmpParam.posIdList', {rules: [{ required: true, message: '请选择职位信息！' }]}]"
+              >
+                <el-option v-for="(item,index) in posList" :key="index" :value="item.id">{{ item.name }}</el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+        </el-col>
+      </el-row>
+      <el-row :gutter="24">
+        <el-col :md="24" :sm="24">
+          <el-form-item
+            label="附属信息:"
+            :labelCol="labelCol_JG"
+            :wrapperCol="wrapperCol_JG"
+          >
+            <a-table
+              :columns="columns"
+              :dataSource="data"
+              :pagination="false"
+              :loading="memberLoading"
+            >
+              <template v-for="(col,index) in ['extOrgId','extPosId']" :slot="col" slot-scope="text, record">
+                <template v-if="index == 0" >
+                  <template v-if="record.extOrgId !=''">
+                    <a-tree-select
+                      :key="col"
+                      :treeData="orgTree"
+                      style="width: 100%"
+                      placeholder="请选择附属机构"
+                      :defaultValue="record.extOrgId"
+                      treeDefaultExpandAll
+                      @change="e => handleChange(e,record.key,col)"
+                    >
+                      <span slot="title" slot-scope="{ id }">{{ id }}</span>
+                    </a-tree-select>
+                  </template>
+                  <template v-else>
+                    <a-tree-select
+                      :key="col"
+                      :treeData="orgTree"
+                      style="width: 100%"
+                      placeholder="请选择附属机构"
+                      treeDefaultExpandAll
+                      @change="e => handleChange(e,record.key,col)"
+                    >
+                      <span slot="title" slot-scope="{ id }">{{ id }}</span>
+                    </a-tree-select>
+                  </template>
+                </template>
+                <template v-if="index == 1">
+                  <template v-if="record.extOrgId !=''">
+                    <el-select
+                      :key="col"
+                      style="width: 100%"
+                      placeholder="请选择附属职位"
+                      :default-value="record.extPosId"
+                      @change="e => handleChange(e,record.key,col)"
+                      has-feedback
+                    >
+                      // eslint-disable-next-line vue/no-template-shadow
+                      <el-option v-for="(item,indexs) in posList" :key="indexs" :value="item.id">{{ item.name }}</el-option>
+                    </el-select>
+                  </template>
+                  <template v-else>
+                    <el-select
+                      :key="col"
+                      style="width: 100%"
+                      placeholder="请选择附属职位"
+                      @change="e => handleChange(e,record.key,col)"
+                      has-feedback
+                    >
+                      // eslint-disable-next-line vue/no-template-shadow
+                      <el-option v-for="(item,indexs) in posList" :key="indexs" :value="item.id">{{ item.name }}</el-option>
+                    </el-select>
+                  </template>
+                </template>
+              </template>
+              <template slot="operation" slot-scope="text, record">
+                <a @click="remove(record.key)">删除</a>
+              </template>
+            </a-table>
+            <el-button style="width: 100%; margin-top: 16px; margin-bottom: 8px" type="dashed" icon="plus" @click="newMember">增行</el-button>
+          </el-form-item>
+        </el-col>
+      </el-row>
+    </a-spin>
+  </el-dialog>
+</template>
+<script>
+  import { sysUserEdit, sysUserDetail } from '@/api/modular/system/userManage'
+  import { getOrgTree, getOrgList } from '@/api/modular/system/orgManage'
+  import { sysPosList } from '@/api/modular/system/posManage'
+  import moment from 'moment'
+  export default {
+    data () {
+      return {
+        labelCol: {
+          xs: { span: 24 },
+          sm: { span: 6 }
+        },
+        wrapperCol: {
+          xs: { span: 24 },
+          sm: { span: 16 }
+        },
+        // 机构行样式
+        labelCol_JG: {
+          xs: { span: 24 },
+          sm: { span: 3 }
+        },
+        wrapperCol_JG: {
+          xs: { span: 24 },
+          sm: { span: 20 }
+        },
+        count: 1,
+        columns: [
+          {
+            title: '附属机构',
+            dataIndex: 'extOrgId',
+            width: '45%',
+            scopedSlots: { customRender: 'extOrgId' }
+          },
+          {
+            title: '附属岗位',
+            dataIndex: 'extPosId',
+            width: '45%',
+            scopedSlots: { customRender: 'extPosId' }
+          },
+          {
+            title: '操作',
+            key: 'action',
+            scopedSlots: { customRender: 'operation' }
+          }
+        ],
+        visible: false,
+        confirmLoading: false,
+        orgTree: [],
+        orgList: [],
+        posList: [],
+        sysEmpParamExtList: [],
+        memberLoading: false,
+        form: this.$form.createForm(this),
+        data: [],
+        birthdayString: ''
+      }
+    },
+    methods: {
+      // 初始化方法
+      edit (record) {
+        this.confirmLoading = true
+        this.visible = true
+        this.getOrgData()
+        this.getPosList()
+        // 基本信息加人表单
+        setTimeout(() => {
+          this.form.setFieldsValue(
+            {
+              id: record.id,
+              account: record.account,
+              name: record.name,
+              nickName: record.nickName,
+              sex: record.sex,
+              email: record.email,
+              phone: record.phone,
+              tel: record.tel
+            }
+          )
+        }, 100)
+        // 时间单独处理
+        if (record.birthday != null) {
+          this.form.getFieldDecorator('birthday', { initialValue: moment(record.birthday, 'YYYY-MM-DD') })
+        }
+        this.birthdayString = moment(record.birthday).format('YYYY-MM-DD')
+        // 职位信息加入表单
+        this.getUserDetaile(record.id)
+      },
+      /**
+       * 通过用户ID查询出用户详情，将职位信息填充
+       * @param id
+       */
+      getUserDetaile (id) {
+        sysUserDetail({ 'id': id }).then((res) => {
+          const SysEmpInfo = res.data.sysEmpInfo
+          const Positions = []
+          SysEmpInfo.positions.forEach(item => {
+            Positions.push(item.posId)
+          })
+          this.form.getFieldDecorator('sysEmpParam.orgName', { initialValue: SysEmpInfo.orgName })
+          this.form.getFieldDecorator('sysEmpParam.posIdList', { initialValue: Positions })
+          this.form.getFieldDecorator('sysEmpParam.jobNum', { initialValue: SysEmpInfo.jobNum })
+          this.form.getFieldDecorator('sysEmpParam.orgId', { initialValue: SysEmpInfo.orgId })
+          SysEmpInfo.extOrgPos.forEach(item => {
+            const length = this.data.length
+            this.data.push({
+              key: length === 0 ? '1' : (parseInt(this.data[length - 1].key) + 1).toString(),
+              extOrgId: item.orgId,
+              extPosId: item.posId
+            })
+          })
+          this.confirmLoading = false
+        })
+      },
+      /**
+       * 增行
+       */
+      newMember () {
+        const length = this.data.length
+        this.data.push({
+          key: length === 0 ? '1' : (parseInt(this.data[length - 1].key) + 1).toString(),
+          extOrgId: '',
+          extPosId: ''
+        })
+      },
+      /**
+       * 删除
+       */
+      remove (key) {
+        const newData = this.data.filter(item => item.key !== key)
+        this.data = newData
+      },
+      /**
+       * 选择子表单单项触发
+       */
+      handleChange (value, key, column) {
+        const newData = [...this.data]
+        const target = newData.find(item => key === item.key)
+        if (target) {
+          target[column] = value
+          this.data = newData
+        }
+      },
+      /**
+       * 获取机构数据，并加载于表单中
+       */
+      getOrgData () {
+        getOrgTree().then((res) => {
+          this.orgTree = res.data
+        })
+        getOrgList().then((res) => {
+          this.orgList = res.data
+        })
+      },
+      /**
+       * 获取职位list列表
+       */
+      getPosList () {
+        sysPosList().then((res) => {
+          this.posList = res.data
+        })
+      },
+      /**
+       * 选择树机构，初始化机构名称于表单中
+       */
+      initrOrgName (value) {
+        this.form.getFieldDecorator('sysEmpParam.orgName', { initialValue: this.orgList.find(item => value === item.id).name })
+      },
+      /**
+       * 子表单json重构
+       */
+      JsonReconsitution () {
+        this.sysEmpParamExtList = []
+        const newData = [...this.data]
+        newData.forEach(item => {
+          // eslint-disable-next-line eqeqeq
+          if (item.extOrgId != '' & item.extPosId != '') {
+            this.sysEmpParamExtList.push({ orgId: item.extOrgId, posId: item.extPosId })
+          }
+        })
+      },
+      /**
+       * 日期需单独转换
+       */
+      onChange (date, dateString) {
+        this.birthdayString = moment(date).format('YYYY-MM-DD')
+      },
+      handleSubmit () {
+        const { form: { validateFields } } = this
+        this.confirmLoading = true
+        validateFields((errors, values) => {
+          if (!errors) {
+            this.JsonReconsitution()
+            values.sysEmpParam['extIds'] = this.sysEmpParamExtList
+            // eslint-disable-next-line eqeqeq
+            if (this.birthdayString == 'Invalid date') {
+              this.birthdayString = ''
+            }
+            values.birthday = this.birthdayString
+            sysUserEdit(values).then((res) => {
+              if (res.success) {
+                this.$message.success('编辑成功')
+                this.confirmLoading = false
+                this.$emit('ok', values)
+                this.handleCancel()
+              } else {
+                this.$message.error('编辑失败：' + res.message)
+              }
+            }).finally((res) => {
+              this.confirmLoading = false
+            })
+          } else {
+            this.confirmLoading = false
+          }
+        })
+      },
+      handleCancel () {
+        this.form.resetFields()
+        this.visible = false
+        // 清理子表单中数据
+        this.data = []
+        // 清理时间
+        this.birthdayString = ''
+        this.form.getFieldDecorator('birthday', { initialValue: null })
+      }
+    }
+  }
+</script>

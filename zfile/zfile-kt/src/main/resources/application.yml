@@ -1,0 +1,71 @@
+server:
+  compression:
+    enabled: true
+  port: 9101
+  servlet:
+    context-path: ''
+  tomcat:
+    threads:
+      max: 20
+spring:
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm
+    time-zone: GMT+8
+    
+  jpa:
+    defer-datasource-initialization: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: false
+    show-sql: true
+  mvc:
+    pathmatch:
+      matching-strategy: path_pattern_parser
+  sql:
+    init:
+      continue-on-error: true
+      data-locations: classpath*:db/data.sql
+      encoding: utf-8
+      mode: always
+
+  profiles:
+    active: dev
+zfile:
+  cache:
+    auto-refresh:
+      interval: 1
+    timeout: 1800
+  constant:
+    password: password.txt
+    readme: readme.md
+  db:
+    path: ${user.home}/.zfile/db/zfile
+  debug: false
+  directLinkPrefix: directlink
+  log:
+    path: ${user.home}/.zfile/logs
+  onedrive:
+    clientId: 09939809-c617-43c8-a220-a93c1513c5d4
+    clientSecret: _l:zI-_yrW75lV8M61K@z.I2K@B/On6Q
+    redirectUri: https://zfile.jun6.net/onedrive/callback
+    scope: offline_access User.Read Files.ReadWrite.All
+  onedrive-china:
+    clientId: 4a72d927-1907-488d-9eb2-1b465c53c1c5
+    clientSecret: Y9CEA=82da5n-y_]KAWAgLH3?R9xf7Uw
+    redirectUri: https://zfile.jun6.net/onedrive/china-callback
+    scope: offline_access User.Read Files.ReadWrite.All
+  preview:
+    audio:
+      maxFileSizeMb: 5
+    text:
+      maxFileSizeKb: 512
+  tmp:
+    path: ${user.home}/.zfile/tmp
+#雪花算法
+snowflake:
+  datacenter-id: 1
+  worker-id: 0

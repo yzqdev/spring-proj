@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.UserMapper">
+
+    <!-- 用户注册 -->
+    <insert id="register" parameterType="cn.hellohao.model.entity.SysUser">
+        INSERT INTO sys_user (id, username, password, email, birthday, level,uid,isok,memory,group_id)
+        VALUES (#{id}, #{username}, #{password}, #{email}, #{birthday}, #{level},#{uid},#{isok},#{memory},#{groupId}   )
+    </insert>
+    <!--  查询是否有username  -->
+    <select id="countusername" parameterType="string" resultType="integer">
+        select COUNT(*)
+        from sys_user
+        where username = #{username}
+    </select>
+    <!--  查询是否有邮箱  -->
+    <select id="countmail" parameterType="string" resultType="integer">
+        select COUNT(*)
+        from sys_user
+        where email = #{email}
+
+    </select>
+    <!--  uid查询用户并修改  -->
+    <update id="getUserByUid" parameterType="cn.hellohao.model.entity.SysUser">
+        <!-- UPDATE sys_user set username=#{username},password=#{password} where email=#{email} -->
+        UPDATE sys_user set isok=1 where uid=#{uid}
+    </update>
+
+    <!-- 登录 -->
+    <select id="login" parameterType="string" resultType="integer">
+        select COUNT(*)
+        from sys_user
+<!--        where email = #{email}-->
+<!--        and password = #{password}-->
+        <where>
+
+            <if test="email != null">
+                  email = #{email}
+            </if>
+            <if test="password != null">
+                  password = #{password}
+            </if>
+            <if test="uid != null">
+               uid = #{uid}
+            </if>
+
+        </where>
+    </select>
+
+    <!-- 查询当前用户:根据邮箱,根据id -->
+    <select id="getUsers" parameterType="cn.hellohao.model.entity.SysUser" resultType="cn.hellohao.model.entity.SysUser">
+        SELECT id,
+        username,
+        email,
+        password,
+        birthday,
+        LEVEL,
+        uid,
+        isok,
+        memory,
+        group_id
+        FROM sys_user
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="email != null">
+                and email = #{email}
+            </if>
+            <if test="uid != null">
+                and uid = #{uid}
+            </if>
+        </where>
+    </select>
+    <!-- 查询当前用户:根据id -->
+    <select id="getUserById" parameterType="integer" resultType="cn.hellohao.model.entity.SysUser">
+        SELECT id,
+               username,
+               email,
+               password,
+               birthday,
+               LEVEL,
+               uid,
+               isok,
+               memory,
+               group_id
+        FROM sys_user
+        WHERE id = #{id}
+    </select>
+    <!-- 查询当前用户:根据uid -->
+    <select id="getUsersMail" parameterType="string" resultType="cn.hellohao.model.entity.SysUser">
+        SELECT id,
+        username,
+        email,
+        password,
+        birthday,
+        LEVEL,
+        uid,
+        isok,
+        memory,
+        group_id
+        FROM sys_user
+        WHERE uid = #{uid}
+    </select>
+
+
+
+    <!-- 修改资料 -->
+    <update id="change" parameterType="cn.hellohao.model.entity.SysUser">
+        <!-- UPDATE sys_user set username=#{username},password=#{password} where email=#{email} -->
+        UPDATE sys_user
+        <set>
+            <if test="email != null">
+               email = #{email},
+            </if>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+            password = #{password},
+            </if>
+            <if test="memory != null">
+               memory = #{memory},
+            </if>
+            <if test="groupId != null">
+                group_id = #{groupId}
+            </if>
+        </set>
+        where uid=#{uid}
+    </update>
+
+    <update id="changeUser" parameterType="cn.hellohao.model.entity.SysUser">
+        UPDATE sys_user
+        <set>
+            <if test="email != null">
+                email = #{email},
+            </if>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="memory != null">
+                memory = #{memory},
+            </if>
+            <if test="groupId != null">
+                group_id = #{groupId},
+            </if>
+            <if test="isok != null">
+                isok = #{isok},
+            </if>
+            <if test="uid != null">
+                uid = #{uid},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <select id="checkUsername" parameterType="string" resultType="integer">
+        SELECT count(username) FROM sys_user where username=#{username}
+    </select>
+
+    <!-- 查询用户总数 -->
+    <select id="getUserTotal" resultType="integer">
+        SELECT count(*) FROM sys_user
+    </select>
+
+    <!-- 获取用户的详细信息 -->
+    <select id="getUserList" resultType="cn.hellohao.model.entity.SysUser" parameterType="java.lang.String">
+        SELECT
+        id,
+        username,
+        email,
+        birthday,
+       level,
+        uid,
+        isok,
+        ceil((memory/1024/1024)) as memory,
+        group_id,
+        (select group_name from site_group where id = group_id) as group_name
+        FROM
+        sys_user
+         <where>
+        <if test="username != null">
+            and CONCAT(
+            username,
+            email
+            ) LIKE '%${username}%'
+        </if></where>
+        order by birthday desc
+    </select>
+
+    <!--刪除用戶-->
+    <delete id="deleuser" parameterType="integer">
+        DELETE FROM sysUser WHERE id=#{id}
+    </delete>
+
+    <update id="setIsok" parameterType="cn.hellohao.model.entity.SysUser">
+        <!-- UPDATE sys_user set username=#{username},password=#{password} where email=#{email} -->
+        UPDATE sysUser set isok=#{isok} where id=#{id}
+    </update>
+    <update id="setmemory" parameterType="cn.hellohao.model.entity.SysUser">
+        <!-- UPDATE sys_user set username=#{username},password=#{password} where email=#{email} -->
+        UPDATE sysUser set memory=#{memory} where id=#{id}
+    </update>
+
+    <select id="getUserListFromGroupId" parameterType="integer" resultType="cn.hellohao.model.entity.SysUser">
+        select * from sysUser where group_id=#{group_id}
+    </select>
+
+</mapper>

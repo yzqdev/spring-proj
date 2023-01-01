@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.ImgAndAlbumMapper">
+
+
+    <select id="selectImgAndAlbum" parameterType="string" resultType="cn.hellohao.model.entity.ImgAndAlbum">
+        SELECT
+        *
+        FROM
+        img_and_album
+        <where>
+            <if test="albumkey != null">
+                album_key = #{albumkey}
+            </if>
+        </where>
+    </select>
+
+    <select id="getAlbumForImgname" resultType="cn.hellohao.model.entity.ImgAndAlbum" parameterType="string">
+        SELECT
+        *
+        FROM
+        img_and_album
+        <where>
+            <if test="imgname != null">
+                imgname = #{imgname}
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+
+
+    <select id="selectImgForAlbumkey" parameterType="string" resultType="cn.hellohao.model.entity.Images">
+
+        select * from img_data
+                          LEFT JOIN img_and_album    on img_data.img_name = img_and_album.img_name
+                          LEFT JOIN album   on img_and_album.album_key = album.album_key
+        where img_and_album.album_key = #{albumKey}
+
+    </select>
+
+</mapper>

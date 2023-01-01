@@ -1,0 +1,188 @@
+<template>
+  <div v-loading="fullLoading" class="zfile-install">
+    <el-form
+      ref="installFormRef"
+      :rules="rules"
+      :model="form"
+      label-width="auto"
+      :status-icon="true"
+      v-loading="loading"
+      class="zfile-install-form"
+      element-loading-text="保存并初始化中."
+    >
+      <div class="zfile-install-title box animate__animated animate__fadeIn">
+        Z-File
+        <small>Install</small>
+      </div>
+
+      <el-form-item
+        class="box animate__animated animate__fadeInUp"
+        prop="siteName"
+      >
+        <el-input
+          placeholder="站点名称"
+          prefix-icon="el-icon-tickets"
+          v-model="form.siteName"
+        />
+      </el-form-item>
+
+      <el-form-item
+        class="box animate__animated animate__fadeInUp"
+        prop="username"
+      >
+        <el-input
+          placeholder="管理员账号"
+          prefix-icon="el-icon-user"
+          v-model.trim="form.username"
+        />
+      </el-form-item>
+
+      <el-form-item
+        class="box animate__animated animate__fadeInUp"
+        prop="password"
+      >
+        <el-input
+          placeholder="管理员密码"
+          prefix-icon="el-icon-key"
+          v-model.trim="form.password"
+        />
+      </el-form-item>
+
+      <el-form-item
+        class="box animate__animated animate__fadeInUp"
+        prop="domain"
+      >
+        <el-input
+          placeholder="站点地址/域名"
+          prefix-icon="el-icon-link"
+          v-model.trim="form.domain"
+        />
+      </el-form-item>
+
+      <el-form-item class="zfile-install-enter">
+        <el-button type="primary" icon="el-icon-check" @click="submitForm"
+          >确认</el-button
+        >
+      </el-form-item>
+    </el-form>
+  </div>
+</template>
+
+<script setup lang="ts">
+import qs from "qs";
+import { onMounted, reactive, ref, toRefs } from "vue";
+import http from "../utils/http";
+import { isInstalled } from "../utils/apis";
+import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
+
+let state = reactive({
+  fullLoading: false,
+  form: {
+    siteName: "",
+    username: "",
+    password: "",
+    domain: "",
+  },
+  loading: false,
+  rules: {
+    siteName: [
+      { required: true, message: "请输入站点名称", trigger: "change" },
+    ],
+    username: [
+      { required: true, message: "请输入管理员账号", trigger: "change" },
+    ],
+    password: [
+      { required: true, message: "请输入管理员密码", trigger: "change" },
+    ],
+    domain: [
+      {
+        required: true,
+        type: "url",
+        message: "请输入正确的域名，需以 http:// 或 https:// 开头",
+        trigger: "change",
+      },
+    ],
+  },
+});
+let router = useRouter();
+let { fullLoading, form, loading, rules } = toRefs(state);
+onMounted(async () => {
+  state.form.domain =
+    http.defaults.baseURL === ""
+      ? window.location.origin
+      : http.defaults.baseURL;
+  state.fullLoading = true;
+  let { data } = await isInstalled();
+  if (data.code != 0) {
+    router.push({ name: "main" });
+  }
+  state.fullLoading = false;
+});
+let installFormRef = ref();
+function submitForm() {
+  installFormRef.value.validate((valid: boolean) => {
+    if (valid) {
+      state.loading = true;
+
+      http.post("/doInstall", qs.stringify(state.form)).then((response) => {
+        state.loading = false;
+        let data = response.data;
+        if (data.code === 0) {
+          ElMessage({
+            message: "初始化成功",
+            type: data.code === 0 ? "success" : "error",
+            duration: 1500,
+            onClose() {
+              router.push("/main");
+            },
+          });
+        } else {
+          ElMessage({
+            message: data.msg,
+            type: "error",
+            duration: 3000,
+            onClose() {
+              router.push("/main");
+            },
+          });
+        }
+      });
+    } else {
+      state.loading = false;
+      return false;
+    }
+  });
+}
+</script>
+
+<style scoped>
+.zfile-install {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.zfile-install-form {
+  width: 450px;
+  padding: 30px 35px 15px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  box-shadow: 0 0 15px #cac6c6;
+}
+
+.zfile-install-title {
+  text-align: center;
+  vertical-align: text-bottom;
+  font-size: 30px;
+  font-weight: 600;
+  color: red;
+  background-image: linear-gradient(-20deg, #6e45e2, #88d3ce);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  line-height: 80px;
+}
+</style>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.GroupMapper">
+
+
+<!--    <select id="grouplist" resultType="cn.hellohao.entity.SiteGrouproup">-->
+<!--        SELECT-->
+<!--        *-->
+<!--        FROM-->
+<!--        siteGroup-->
+<!--    </select>-->
+
+
+    <select id="grouplist" resultType="cn.hellohao.model.entity.SiteGroup" parameterType="integer">
+        SELECT
+        g.id,g.group_name,g.key_id,g.user_type,g.compress,k.storage_type,k.key_name
+        FROM
+       site_group as g LEFT JOIN storage_key as k on g.key_id = k.id
+         <where>
+        <if test="usertype!=null">
+            and g.user_type=#{usertype}
+        </if>
+    </where>
+    </select>
+
+
+    <select id="idGroupList" parameterType="string" resultType="cn.hellohao.model.entity.SiteGroup">
+        SELECT
+            *
+        FROM
+            site_group
+        where id = #{id}
+    </select>
+
+    <insert id="addgroup" parameterType="cn.hellohao.model.entity.SiteGroup">
+        insert into site_group (id,group_name,key_id,use_type,compress) values (null,#{groupName},#{keyId},#{userType},#{compress})
+    </insert>
+
+    <select id="getUserTypeCount" parameterType="integer" resultType="integer">
+        SELECT
+            count(id)
+        FROM
+            site_group
+        where user_type = #{usertype}
+    </select>
+
+    <delete id="deleteGroup" parameterType="integer">
+        delete from site_group where id=#{id}
+    </delete>
+
+    <update id="setgroup" parameterType="cn.hellohao.model.entity.SiteGroup">
+        UPDATE site_group SET group_name = #{groupname},key_id = #{keyid},user_type = #{userType},compress = #{compress} where id = #{id};
+    </update>
+
+    <select id="getGroupByUserType" parameterType="integer" resultType="cn.hellohao.model.entity.SiteGroup">
+        SELECT
+            *
+        FROM
+            site_group
+        where user_type = #{usertype}
+    </select>
+
+</mapper>

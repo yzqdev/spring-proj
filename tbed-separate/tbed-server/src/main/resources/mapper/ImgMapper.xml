@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.ImgMapper">
+
+    <!-- 查询-->
+    <select id="selectImageData" parameterType="cn.hellohao.model.dto.ImgSearchDto" resultType="cn.hellohao.model.entity.Images">
+        SELECT
+        a.id,
+        a.img_name,
+        a.img_url,
+        b.username,
+        a.update_time,
+        a.sizes,
+        a.abnormal,
+        a.source,
+        a.img_type,
+        a.explains,
+        a.md5key,
+        a.img_uid,
+        a.format,
+        a.about,
+        a.violation
+
+        FROM  img_data a  LEFT JOIN sys_user b ON a.user_id = b.id
+        <where>
+
+            <if test=" img.source != null">
+                and
+                a.source = #{img.source}
+            </if>
+            <if test="img.startTime != null">
+                and
+                a.update_time &gt;= #{img.startTime}
+            </if>
+            <if test="img.stopTime != null">
+                and
+                a.update_time &lt;= #{img.stopTime}
+            </if>
+
+<!--            <if test="img.violation == 'true'">-->
+<!--                and-->
+<!--                a.violation !=-->
+<!--            </if>-->
+            <choose>
+                <when test="img.userId!=null and img.userId!=''">
+                    and
+                    a.user_id = #{userId}
+                </when>
+                <otherwise>
+                    <if test="img.username != null and img.username != ''">
+                        <choose>
+                            <when test="img.selecttype==1">
+                                and
+                                a.user_id in ( SELECT id  from sys_user where username LIKE '%${img.username}%')
+                            </when>
+                            <otherwise>
+                                and
+                                a.user_id not in ( SELECT id  from sys_user where username LIKE '%${img.username}%')
+                            </otherwise>
+                        </choose>
+                    </if>
+                </otherwise>
+            </choose>
+        </where>
+
+        order by a.id desc
+    </select>
+    <!-- 此用户下总数 -->
+
+
+    <delete id="deleimgForImgUid" parameterType="string">
+        DELETE
+        FROM img_data
+        WHERE img_uid = #{imguid}
+    </delete>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.String" resultType="cn.hellohao.model.entity.Images">
+        select *
+        from img_data
+        where id = #{id}
+    </select>
+
+    <select id="counts" resultType="integer">
+        select count(*) from img_data
+
+        <where>
+            <if test="userId != null">
+                user_id=#{userId}
+
+            </if>
+        </where>
+    </select>
+
+    <!-- 根据图片名字标记IP -->
+    <update id="setImg" parameterType="cn.hellohao.model.entity.Images">
+        UPDATE img_data
+        <set>
+            <if test="abnormal!=null">
+                abnormal=#{abnormal}
+            </if>
+            <if test="explains!=null">
+                explains=#{explains}
+            </if>
+        </set>
+        where img_name=#{imgname}
+    </update>
+    <!-- 非法图片删除他  根据名称-->
+    <delete id="deleimgname" parameterType="string">
+        DELETE
+        FROM img_data
+        WHERE img_name = #{imgname}
+    </delete>
+
+    <!--    批量删除-->
+    <delete id="deleall" parameterType="integer">
+        DELETE
+        FROM img_data
+        WHERE id = #{id}
+    </delete>
+
+    <select id="getTimeImg" parameterType="string" resultType="cn.hellohao.model.entity.Images">
+        SELECT *
+        from img_data
+        WHERE update_time >= #{time}
+    </select>
+    <!--查询指定用户总内存-->
+    <select id="getUserMemory" parameterType="string" resultType="long">
+        SELECT sum(sizes) as sizes
+        FROM  img_data
+        where user_id = #{userid}
+    </select>
+
+    <!--  获取指定对象存储的已用空间 -->
+    <select id="getSourceMemory" parameterType="java.lang.String" resultType="long">
+        SELECT sum(sizes) as sizes
+        FROM img_data
+        where source = #{source}
+    </select>
+
+    <select id="md5Count" resultType="integer">
+        select count(id)
+        from img_data
+        where md5key = #{md5key}
+          and user_id = #{userid}
+    </select>
+
+    <select id="selectImgUrlByMD5" parameterType="string" resultType="cn.hellohao.model.entity.Images">
+        select img_name, img_url
+        from img_data
+        where md5key = #{md5key}
+    </select>
+
+    <!--    查询当前用户的近20条数据-->
+    <select id="recentlyUploaded" parameterType="java.lang.String" resultType="cn.hellohao.model.entity.Images">
+        select *
+        from img_data
+        where user_id = #{userId}
+        ORDER BY update_time DESC
+        LIMIT 20
+    </select>
+
+    <select id="recentlyUser" resultType="cn.hellohao.model.vo.RecentUserVo">
+        select count(i.id) as counts, i.user_id, u.username, u.email, u.memory
+        from img_data i
+                 LEFT JOIN sys_user u on i.user_id = u.id
+        where i.user_id not in ('0')
+        GROUP BY i.user_id, u.username,  u.email, u.memory
+        ORDER BY counts DESC
+        LIMIT 20
+    </select>
+
+
+    <select id="getyyyy" parameterType="string" resultType="string">
+        SELECT DISTINCT update_time yyyy FROM img_data
+
+         where user_id = #{userId}
+
+    </select>
+
+
+    <select id="countByM" parameterType="cn.hellohao.model.dto.HomeImgDto" resultType="cn.hellohao.model.vo.ImageVo">
+        SELECT
+        count(id) countNum,
+        to_char(update_time,'MM') monthNum
+        FROM
+        img_data
+        where to_char(update_time,'yyyy')=#{year}
+        <if test="userId != null">
+            and user_id = #{userId}
+        </if>
+        GROUP BY
+        to_char(update_time,'MM')
+        ORDER BY
+        to_char(update_time,'MM') ASC
+
+    </select>
+
+
+</mapper>

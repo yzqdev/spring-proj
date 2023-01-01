@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.AlbumMapper">
+
+
+    <select id="selectAlbum" parameterType="cn.hellohao.model.dto.AlbumDto" resultType="cn.hellohao.model.entity.Album">
+        SELECT
+        *
+        FROM
+        album
+        <where>
+            <if test="albumKey != null">
+               album_key = #{albumKey}
+            </if>
+            <if test="userId != null">
+                user_id= #{userId}
+            </if>
+        </where>
+    </select>
+
+
+
+
+
+
+    <select id="selectAlbumURLList" parameterType="cn.hellohao.model.dto.AlbumDto" resultType="cn.hellohao.model.entity.Album">
+        SELECT
+        a.album_key,
+        a.album_title,
+        a.create_time,
+        a.password,
+        a.user_id,
+        u.username
+        FROM album a LEFT JOIN sys_user u on a.user_id = u.id
+        <where>
+            <if test="albumDto.albumKey != null">
+                "album" like '%${albumDto.albumKey}%'
+            </if>
+            <if test="albumDto.username != null">
+                 "username" like '%${albumDto.username}%'
+            </if>
+            <if test="albumDto.userId != null">
+                a.user_id = #{albumDto.userId}
+            </if>
+        </where>
+        order by a.create_time
+    </select>
+
+    <select id="selectAlbumCount" parameterType="java.lang.String" resultType="java.lang.Integer" >
+        SELECT
+        count(album_key)
+        FROM
+        album
+        <where>
+            <if test="userId != null">
+                user_id = #{userId}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

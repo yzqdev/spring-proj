@@ -1,0 +1,28 @@
+{
+  "properties": [
+    {
+      "name": "multipart.maxFileSize",
+      "type": "java.lang.String",
+      "description": "Description for multipart.maxFileSize."
+    },
+    {
+      "name": "multipart.maxRequestSize",
+      "type": "java.lang.String",
+      "description": "Description for multipart.maxRequestSize."
+    },
+    {
+      "name": "CROS_ALLOWED_ORIGINS",
+      "type": "java.lang.String",
+      "description": "Description for CROS_ALLOWED_ORIGINS."
+    },
+    {
+      "name": "systemupdate",
+      "type": "java.lang.String",
+      "description": "Description for systemupdate."
+    },
+    {
+      "name": "spring.http.multipart.location",
+      "type": "java.lang.String",
+      "description": "Description for spring.http.multipart.location."
+    }
+  ] }

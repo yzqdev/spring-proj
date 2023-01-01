@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.hellohao.mapper.CodeMapper">
+
+
+    <select id="selectCode" parameterType="string" resultType="cn.hellohao.model.entity.Code">
+        SELECT
+        *
+        FROM
+        code
+            <where>
+                <if test="code != null">
+                    and expand_code = #{code}
+                </if>
+            </where>
+
+    </select>
+
+    <select id="selectCodekey"  parameterType="string" resultType="cn.hellohao.model.entity.Code">
+        SELECT
+        *
+        FROM
+            code
+         where expand_code = #{code}
+
+    </select>
+
+    <insert id="addCode" parameterType="cn.hellohao.model.entity.Code">
+        insert into  code values (#{id}, #{value},#{expandCode})
+    </insert>
+
+    <delete id="deleteCode" parameterType="string">
+        delete from  code where expand_code=#{code}
+    </delete>
+
+
+</mapper>
