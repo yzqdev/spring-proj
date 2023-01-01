@@ -17,11 +17,11 @@
                         <form method="POST" action="login" accept-charset="UTF-8">
                             <div class="form-group">
                                 <label class="control-label" for="username">账号</label>
-                                <input class="form-control" name="username" type="text" required>
+                                <input value="admin" class="form-control" name="username" type="text" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="password">密码</label>
-                                <input class="form-control" name="password" type="password" required>
+                                <input value="123456" class="form-control" name="password" type="password" required>
                             </div>
                             <div class="form-group">
                                 <label>
@@ -33,7 +33,7 @@
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary btn-block">
-                                    登录 Use it
+                                    登录
                                 </button>
                             </div>
                             <@controls name="register">

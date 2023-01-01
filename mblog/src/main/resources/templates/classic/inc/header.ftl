@@ -9,16 +9,16 @@
             <div class="modal-body">
                 <form method="POST" action="${base}/login" accept-charset="UTF-8">
                     <div class="form-group">
-                        <label class="control-label" for="username">账号</label>
-                        <input class="form-control" id="ajax_login_username" name="username" type="text" required>
+                        <label class="control-label"  for="username">账号</label>
+                        <input class="form-control" value="admin" id="ajax_login_username" name="username" type="text" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="password">密码</label>
-                        <input class="form-control" id="ajax_login_password" name="password" type="password" required>
+                        <input class="form-control" value="123456" id="ajax_login_password" name="password" type="password" required>
                     </div>
                     <div class="form-group">
                         <button id="ajax_login_submit" class="btn btn-primary btn-block btn-sm" type="button">
-                            登录 Use it
+                            登录
                         </button>
                     </div>
                     <div class="form-group">

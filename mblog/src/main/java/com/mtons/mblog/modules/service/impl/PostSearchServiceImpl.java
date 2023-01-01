@@ -9,11 +9,11 @@ import com.mtons.mblog.modules.service.UserService;
 import com.mtons.mblog.base.utils.BeanMapUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
+//import org.apache.lucene.analysis.cn.smart.SmartChineseAnalyzer;
 import org.apache.lucene.search.Query;
-import org.apache.lucene.search.highlight.Highlighter;
-import org.apache.lucene.search.highlight.QueryScorer;
-import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
+//import org.apache.lucene.search.highlight.Highlighter;
+//import org.apache.lucene.search.highlight.QueryScorer;
+//import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.FullTextQuery;
 import org.hibernate.search.jpa.Search;
@@ -26,6 +26,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.swing.text.Highlighter;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -64,10 +65,10 @@ public class PostSearchServiceImpl implements PostSearchService {
         query.setFirstResult((int) pageable.getOffset());
         query.setMaxResults(pageable.getPageSize());
 
-        SmartChineseAnalyzer analyzer = new SmartChineseAnalyzer();
-        SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='color:red;'>", "</span>");
-        QueryScorer scorer = new QueryScorer(luceneQuery);
-        Highlighter highlighter = new Highlighter(formatter, scorer);
+        //SmartChineseAnalyzer analyzer = new SmartChineseAnalyzer();
+        //SimpleHTMLFormatter formatter = new SimpleHTMLFormatter("<span style='color:red;'>", "</span>");
+        //QueryScorer scorer = new QueryScorer(luceneQuery);
+        //Highlighter highlighter = new Highlighter(formatter, scorer);
 
         List<Post> list = query.getResultList();
         List<PostVO> rets = list.stream().map(po -> {
@@ -75,15 +76,15 @@ public class PostSearchServiceImpl implements PostSearchService {
 
             try {
                 // 处理高亮
-                String title = highlighter.getBestFragment(analyzer, "title", post.getTitle());
-                String summary = highlighter.getBestFragment(analyzer, "summary", post.getSummary());
+                //String title = highlighter.getBestFragment(analyzer, "title", post.getTitle());
+                //String summary = highlighter.getBestFragment(analyzer, "summary", post.getSummary());
 
-                if (StringUtils.isNotEmpty(title)) {
-                    post.setTitle(title);
-                }
-                if (StringUtils.isNotEmpty(summary)) {
-                    post.setSummary(summary);
-                }
+                //if (StringUtils.isNotEmpty(title)) {
+                //    post.setTitle(title);
+                //}
+                //if (StringUtils.isNotEmpty(summary)) {
+                //    post.setSummary(summary);
+                //}
             } catch (Exception e) {
                 log.error(e.getMessage(), e);
             }

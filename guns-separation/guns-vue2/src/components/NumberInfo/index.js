@@ -1,3 +1,3 @@
-import NumberInfo from './NumberInfo'
+import NumberInfo from './NumberInfo.vue'
 
 export default NumberInfo

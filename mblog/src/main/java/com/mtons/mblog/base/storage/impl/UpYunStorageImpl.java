@@ -68,7 +68,7 @@ public class UpYunStorageImpl extends AbstractStorage implements Storage {
         String path = StringUtils.remove(storePath, domain.trim());
         UpYun yun = builder();
         try {
-            yun.deleteFile(path);
+            yun.deleteFile(path,null);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
         }
