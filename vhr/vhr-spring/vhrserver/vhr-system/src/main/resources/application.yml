@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: postgres
+    password: 123456
+    url: jdbc:postgresql://localhost:5432/vhr?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+  rabbitmq:
+    username: guest
+    password: guest
+    host: 127.0.0.1
+    publisher-confirms: true
+    publisher-returns: true
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6379
+    password:
+  cache:
+    cache-names: menus_cache
+server:
+  port: 6101
+  compression:
+    enabled: true
+fastdfs:
+  nginx:
+    host: http://192.168.91.128/
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml

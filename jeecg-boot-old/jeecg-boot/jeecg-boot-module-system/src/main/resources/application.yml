@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: jeecg-system
+  profiles:
+    active: dev
+
+#  config:
+#
+#    activate:
+#      on-profile: 'dev'
+#      on-profile: @profile.name@
