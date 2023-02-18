@@ -1,0 +1,928 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yi.Framework.ApiMicroservice</name>
+    </assembly>
+    <members>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.BaseCrudController`1">
+            <summary>
+            Json To Sql 类比模式，通用模型
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseCrudController`1.GetById(System.Int64)">
+            <summary>
+            主键查询
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseCrudController`1.GetList(Yi.Framework.Model.Base.Query.QueryCondition)">
+            <summary>
+            列表查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseCrudController`1.PageList(Yi.Framework.Model.Base.Query.QueryPageCondition)">
+            <summary>
+            条件分页查询
+            </summary>
+            <param name="queryCondition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseCrudController`1.Add(`0)">
+            <summary>
+            添加
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseCrudController`1.Update(`0)">
+            <summary>
+            修改
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseCrudController`1.DeleteList(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            列表删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseExcelController`1.Template">
+            <summary>
+            下载模板
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseExcelController`1.Export">
+            <summary>
+            导出数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseExcelController`1.Import(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            导入数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleCrudController`1">
+            <summary>
+            Json To Sql 类比模式，通用模型
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleCrudController`1.GetById(System.Int64)">
+            <summary>
+            主键查询
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleCrudController`1.GetList">
+            <summary>
+            全部列表查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleCrudController`1.Add(`0)">
+            <summary>
+            添加
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleCrudController`1.Update(`0)">
+            <summary>
+            修改
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleCrudController`1.DelList(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            列表删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleRdController`1">
+            <summary>
+            Json To Sql 类比模式，通用模型
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleRdController`1.GetById(System.Int64)">
+            <summary>
+            主键查询
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleRdController`1.GetList">
+            <summary>
+            全部列表查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.BaseSimpleRdController`1.DelList(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            列表删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AgreeController.Operate(System.Int64)">
+            <summary>
+            点赞操作
+            </summary>
+            <param name="articleId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.ArticleController">
+            <summary>
+            文章控制器
+            </summary>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ArticleController.PageList(Yi.Framework.Model.BBS.Entitys.ArticleEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <param name="entity"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ArticleController.Add(Yi.Framework.Model.BBS.Entitys.ArticleEntity)">
+            <summary>
+            添加
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.CommentController.GetListByArticleId(System.Int64)">
+            <summary>
+            获取文章的全部一级评论
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.CommentController.GetById(System.Int64)">
+            <summary>
+            获取一级评论详情
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.CommentController.Add(Yi.Framework.Model.BBS.Entitys.CommentEntity)">
+            <summary>
+            回复文章或回复评论
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.MaterialController.PageList(Yi.Framework.DtoModel.ERP.Material.MaterialCreateUpdateInput,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            分页查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.MaterialController.GetById(System.Int64)">
+            <summary>
+            单查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.MaterialController.Create(Yi.Framework.DtoModel.ERP.Material.MaterialCreateUpdateInput)">
+            <summary>
+            增
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.MaterialController.Update(System.Int64,Yi.Framework.DtoModel.ERP.Material.MaterialCreateUpdateInput)">
+            <summary>
+            更
+            </summary>
+            <param name="id"></param>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.MaterialController.Del(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseController.PageList(Yi.Framework.DtoModel.ERP.Purchase.PurchaseGetListInput,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            分页查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseController.GetById(System.Int64)">
+            <summary>
+            单查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseController.Create(Yi.Framework.DtoModel.ERP.Purchase.PurchaseCreateInput)">
+            <summary>
+            增
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseController.Update(System.Int64,Yi.Framework.DtoModel.ERP.Purchase.PurchaseUpdateInput)">
+            <summary>
+            更
+            </summary>
+            <param name="id"></param>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseController.Del(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseDetailsController.PageList(Yi.Framework.DtoModel.ERP.PurchaseDetails.PurchaseDetailsCreateUpdateInput,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            分页查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseDetailsController.GetById(System.Int64)">
+            <summary>
+            单查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseDetailsController.Create(Yi.Framework.DtoModel.ERP.PurchaseDetails.PurchaseDetailsCreateUpdateInput)">
+            <summary>
+            增
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseDetailsController.Update(System.Int64,Yi.Framework.DtoModel.ERP.PurchaseDetails.PurchaseDetailsCreateUpdateInput)">
+            <summary>
+            更
+            </summary>
+            <param name="id"></param>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.PurchaseDetailsController.Del(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.SupplierController.PageList(Yi.Framework.DtoModel.ERP.Supplier.SupplierCreateUpdateInput,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            分页查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.SupplierController.GetById(System.Int64)">
+            <summary>
+            单查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.SupplierController.Create(Yi.Framework.DtoModel.ERP.Supplier.SupplierCreateUpdateInput)">
+            <summary>
+            增
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.SupplierController.Update(System.Int64,Yi.Framework.DtoModel.ERP.Supplier.SupplierCreateUpdateInput)">
+            <summary>
+            更
+            </summary>
+            <param name="id"></param>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.SupplierController.Del(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.UnitController.PageList(Yi.Framework.DtoModel.ERP.Unit.UnitCreateUpdateInput,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            分页查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.UnitController.GetById(System.Int64)">
+            <summary>
+            单查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.UnitController.GetList">
+            <summary>
+            全查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.UnitController.Create(Yi.Framework.DtoModel.ERP.Unit.UnitCreateUpdateInput)">
+            <summary>
+            增
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.UnitController.Update(System.Int64,Yi.Framework.DtoModel.ERP.Unit.UnitCreateUpdateInput)">
+            <summary>
+            更
+            </summary>
+            <param name="id"></param>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.UnitController.Del(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.WarehouseController.PageList(Yi.Framework.DtoModel.ERP.Warehouse.WarehouseCreateUpdateInput,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            分页查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.WarehouseController.GetById(System.Int64)">
+            <summary>
+            单查
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.WarehouseController.Create(Yi.Framework.DtoModel.ERP.Warehouse.WarehouseCreateUpdateInput)">
+            <summary>
+            增
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.WarehouseController.Update(System.Int64,Yi.Framework.DtoModel.ERP.Warehouse.WarehouseCreateUpdateInput)">
+            <summary>
+            更
+            </summary>
+            <param name="id"></param>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ERP.WarehouseController.Del(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.AccountController">
+            <summary>
+            账户管理
+            </summary>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AccountController.RestCC">
+            <summary>
+             重置管理员CC的密码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AccountController.Login(Yi.Framework.DtoModel.Base.Dto.LoginDto)">
+            <summary>
+            没啥说，登录
+            </summary>
+            <param name="loginDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AccountController.Register(Yi.Framework.DtoModel.Base.Dto.RegisterDto)">
+            <summary>
+            没啥说，注册
+            </summary>
+            <param name="registerDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AccountController.Logout">
+            <summary>
+            没啥说，登出
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AccountController.GetUserAllInfo">
+            <summary>
+            通过已登录的用户获取用户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AccountController.GetRouterInfo">
+            <summary>
+            获取当前登录用户的前端路由
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AccountController.UpdatePassword(Yi.Framework.DtoModel.Base.Dto.UpdatePasswordDto)">
+            <summary>
+            自己更新密码
+            </summary>
+            <param name="dto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.AccountController.CaptchaImage">
+            <summary>
+            验证码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.ConfigController.PageList(Yi.Framework.Model.RABC.Entitys.ConfigEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <param name="dic"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.DeptController.SelctGetList(Yi.Framework.Model.RABC.Entitys.DeptEntity)">
+            <summary>
+            动态条件查询
+            </summary>
+            <param name="dept"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.DeptController.Add(Yi.Framework.Model.RABC.Entitys.DeptEntity)">
+            <summary>
+            添加
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.DeptController.Update(Yi.Framework.Model.RABC.Entitys.DeptEntity)">
+            <summary>
+            更新
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.DeptController.GetListByRoleId(System.Int64)">
+            <summary>
+            根据角色id获取该角色下全部部门
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.DictionaryController.PageList(Yi.Framework.Model.RABC.Entitys.DictionaryEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <param name="dic"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.DictionaryInfoController.PageList(Yi.Framework.Model.RABC.Entitys.DictionaryInfoEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <param name="dicInfo"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.DictionaryInfoController.GetListByType(System.String)">
+            <summary>
+            根据字典类别获取字典信息
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.FileController">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.FileController.#ctor(Yi.Framework.Interface.RABC.IFileService,Microsoft.Extensions.Hosting.IHostEnvironment,Yi.Framework.Core.ThumbnailSharpInvoer)">
+            <summary>
+            文件上传下载
+            </summary>
+            <param name="iFileService"></param>
+            <param name="env"></param>
+            <param name="thumbnailSharpInvoer"></param>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.FileController.Get(System.Int64,System.Nullable{System.Boolean})">
+            <summary>
+            文件下载,只需用文件code即可,可选择是否为缩略图
+            </summary>
+            <param name="code"></param>
+            <param name="isThumbnail"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.FileController.Upload(System.String,Microsoft.AspNetCore.Http.IFormFileCollection,System.String)">
+            <summary>
+            多文件上传,type可空，默认上传至File文件夹下，swagger返回雪花id精度是有问题的，同时如果时图片类型，还需要进行缩略图制作
+            </summary>
+            <param name="type">文件类型，可空</param>
+            <param name="file">多文件表单</param>
+            <param name="remark">描述</param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.FileController.ThumbnailSync">
+            <summary>
+            一键同步图片到缩略图
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.LogController.Add">
+            <summary>
+            自动分表，日志添加
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.LogController.GetList">
+            <summary>
+            查询近20年与21年的日志表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.LoginLogController.PageList(Yi.Framework.Model.RABC.Entitys.LoginLogEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <param name="loginLog"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.MenuController">
+            <summary>
+            菜单管理
+            </summary>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.MenuController.SelctGetList(Yi.Framework.Model.RABC.Entitys.MenuEntity)">
+            <summary>
+            动态条件查询全部
+            </summary>
+            <param name="menu"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.MenuController.Add(Yi.Framework.Model.RABC.Entitys.MenuEntity)">
+            <summary>
+            插入
+            </summary>
+            <param name="menu"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.MenuController.Update(Yi.Framework.Model.RABC.Entitys.MenuEntity)">
+            <summary>
+            更新
+            </summary>
+            <param name="menu"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.MenuController.GetMenuTree">
+            <summary>
+            得到树形菜单
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.MenuController.GetListByRoleId(System.Int64)">
+            <summary>
+            根据角色id获取该角色下全部菜单
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.OnlineController">
+            <summary>
+            在线管理
+            </summary>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.OnlineController.PageList(Yi.Framework.WebCore.SignalRHub.OnlineUser,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件获取当前在线用户
+            </summary>
+            <param name="online"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.OnlineController.ForceOut(System.String)">
+            <summary>
+            强制退出用户
+            </summary>
+            <param name="connnectionId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.OperationLogController.PageList(Yi.Framework.Model.RABC.Entitys.OperationLogEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <param name="operationLog"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.PostController.PageList(Yi.Framework.Model.RABC.Entitys.PostEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <param name="post"></param>
+            <param name="page"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.RoleController">
+            <summary>
+            角色管理
+            </summary>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.RoleController.PageList(Yi.Framework.Model.RABC.Entitys.RoleEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.RoleController.GiveRoleSetMenu(Yi.Framework.DtoModel.Base.Dto.GiveRoleSetMenuDto)">
+            <summary>
+            给多用户设置多角色
+            </summary>
+            <param name="giveRoleSetMenuDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.RoleController.Add(Yi.Framework.DtoModel.Base.Dto.RoleInfoDto)">
+            <summary>
+            添加角色包含菜单
+            </summary>
+            <param name="roleDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.RoleController.Update(Yi.Framework.DtoModel.Base.Dto.RoleInfoDto)">
+            <summary>
+            更新角色信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.RoleController.UpdateStatus(System.Int64,System.Boolean)">
+            <summary>
+            更改角色状态
+            </summary>
+            <param name="roleId"></param>
+            <param name="isDel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.RoleController.UpdateDataScpoce(Yi.Framework.DtoModel.Base.Dto.RoleInfoDto)">
+             <summary>
+            更改角色数据权限
+             </summary>
+             <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.RoleController.DelList(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.UserController">
+            <summary>
+            用户管理
+            </summary>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.UserController.PageList(Yi.Framework.Model.RABC.Entitys.UserEntity,Yi.Framework.Common.Models.PageParModel,System.Nullable{System.Int64})">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <param name="user"></param>
+            <param name="page"></param>
+            <param name="deptId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.UserController.UpdateStatus(System.Int64,System.Boolean)">
+            <summary>
+            更改用户状态
+            </summary>
+            <param name="userId"></param>
+            <param name="isDel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.UserController.GiveUserSetRole(Yi.Framework.DtoModel.Base.Dto.GiveUserSetRoleDto)">
+            <summary>
+            给多用户设置多角色
+            </summary>
+            <param name="giveUserSetRoleDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.UserController.GetById(System.Int64)">
+            <summary>
+            通过用户id得到用户信息关联部门、岗位、角色
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.UserController.Update(Yi.Framework.DtoModel.Base.Dto.UserInfoDto)">
+            <summary>
+            更新用户信息
+            </summary>
+            <param name="userDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.UserController.UpdateProfile(Yi.Framework.DtoModel.Base.Dto.UserInfoDto)">
+            <summary>
+            更新个人中心信息
+            </summary>
+            <param name="userDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.UserController.Add(Yi.Framework.DtoModel.Base.Dto.UserInfoDto)">
+            <summary>
+            添加用户
+            </summary>
+            <param name="userDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.UserController.RestPassword(Yi.Framework.Model.RABC.Entitys.UserEntity)">
+            <summary>
+            重置密码
+            </summary>
+            <param name="user"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.SkuController.PageList(Yi.Framework.Model.SHOP.Entitys.SkuEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.SpuController.PageList(Yi.Framework.Model.SHOP.Entitys.SpuEntity,Yi.Framework.Common.Models.PageParModel)">
+            <summary>
+            动态条件分页查询
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Yi.Framework.ApiMicroservice.Controllers.TestController">
+            <summary>
+            测试控制器
+            </summary>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.#ctor(Microsoft.AspNetCore.SignalR.IHubContext{Yi.Framework.WebCore.SignalRHub.MainHub},Microsoft.Extensions.Logging.ILogger{Yi.Framework.ApiMicroservice.Controllers.TestController},Yi.Framework.Interface.RABC.IRoleService,Yi.Framework.Interface.RABC.IUserService,Microsoft.Extensions.Localization.IStringLocalizer{Yi.Framework.Language.LocalLanguage},Yi.Framework.Core.Quartz.QuartzInvoker,Yi.Framework.Core.ThumbnailSharpInvoer,Yi.Framework.Core.Cache.CacheInvoker,SqlSugar.ISugarUnitOfWork{Yi.Framework.Repository.UnitOfWork})">
+            <summary>
+            依赖注入，优雅写法
+            </summary>
+            <param name="hub"></param>
+            <param name="logger"></param>
+            <param name="iRoleService"></param>
+            <param name="iUserService"></param>
+            <param name="local"></param>
+            <param name="quartzInvoker"></param>
+            <param name="thumbnailSharpInvoer"></param>
+            <param name="cacheInvoker"></param>
+            <param name="unitOfWork"></param>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.Swagger">
+            <summary>
+            swagger跳转
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.DbTest">
+            <summary>
+            仓储上下文对象测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.UnitOfWorkTest">
+            <summary>
+            工作单元测试，使用sqlsugar内置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.SqlTest">
+            <summary>
+            执行Sql返回
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.LocalTest">
+            <summary>
+            国际化测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.PermissionTest">
+            <summary>
+            权限测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.AuthTest">
+            <summary>
+            策略授权测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.TranTest">
+            <summary>
+            异步事务测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.IncludeTest">
+            <summary>
+            极爽导航属性
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.JobTest">
+            <summary>
+            启动一个定时任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.StopJob">
+            <summary>
+            停止任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.ErrorJob">
+            <summary>
+            job异常处理
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.TreeTest">
+            <summary>
+            树形结构构建测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.AuthorizeTest">
+            <summary>
+            授权测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.ClearDb">
+            <summary>
+            清空数据库
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.SeedDb">
+            <summary>
+            种子数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.LogTest(System.Collections.Generic.List{System.String})">
+            <summary>
+            操作日志测试
+            </summary>
+            <param name="par"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.SignalrTest(System.Int32)">
+            <summary>
+            Signalr实时推送测试
+            </summary>
+            <param name="msg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.ThumbnailTest">
+            <summary>
+            缩略图测试,需要生成前及生成后的路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.CacheDBTest">
+            <summary>
+            缓存测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.CustomLogTest">
+            <summary>
+            自定义日志
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.PropertyTest">
+            <summary>
+            属性注入测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Yi.Framework.ApiMicroservice.Controllers.TestController.CurrentUserTest">
+            <summary>
+            获取当前用户信息测试
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

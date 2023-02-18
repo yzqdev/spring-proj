@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Yi.Framework.OcelotGateway</name>
+    </assembly>
+    <members>
+        <member name="P:Yi.Framework.OcelotGateway.Builder.DataContext.TenantPathList">
+            <summary>
+            租户白名单
+            </summary>
+        </member>
+    </members>
+</doc>

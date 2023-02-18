@@ -1,0 +1,29 @@
+using AutoMapper;
+using SqlSugar;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Yi.Framework.Common.Models;
+using Yi.Framework.DtoModel.#ModelName#.#EntityName#;
+using Yi.Framework.Interface.#ModelName#;
+using Yi.Framework.Model.#ModelName#.Entitys;
+using Yi.Framework.Repository;
+using Yi.Framework.Service.Base.Crud;
+
+namespace Yi.Framework.Service.#ModelName#
+{
+    public class #EntityName#Service : CrudAppService<#EntityName#Entity, #EntityName#GetListOutput, long, #EntityName#CreateUpdateInput>, I#EntityName#Service
+    {
+        public async Task<PageModel<List<#EntityName#GetListOutput>>> PageListAsync(#EntityName#CreateUpdateInput input, PageParModel page)
+        {
+            RefAsync<int> totalNumber = 0;
+            var data = await Repository._DbQueryable
+                .WhereIF(input.Code is not null,u=>u.Code.Contains(input.Code))
+                .WhereIF(input.Name is not null, u => u.Name.Contains(input.Name))
+                .ToPageListAsync(page.PageNum, page.PageSize, totalNumber);
+            return new PageModel<List<#EntityName#GetListOutput>> { Total = totalNumber.Value, Data = await MapToGetListOutputDtosAsync(data) };
+        }
+    }
+}

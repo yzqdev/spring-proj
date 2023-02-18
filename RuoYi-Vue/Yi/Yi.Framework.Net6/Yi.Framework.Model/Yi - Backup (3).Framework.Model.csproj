@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BaseModels\**" />
+    <Compile Remove="ModelFactory\**" />
+    <EmbeddedResource Remove="BaseModels\**" />
+    <EmbeddedResource Remove="ModelFactory\**" />
+    <None Remove="BaseModels\**" />
+    <None Remove="ModelFactory\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NEST" Version="7.16.0" />
+    <PackageReference Include="SqlSugarCore" Version="5.0.6.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yi.Framework.Common\Yi.Framework.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="T4DaraContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>T4DaraContext.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="T4DaraContext.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>T4DaraContext.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

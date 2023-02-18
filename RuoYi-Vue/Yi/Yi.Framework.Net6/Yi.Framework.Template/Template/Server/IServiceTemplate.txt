@@ -1,0 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Yi.Framework.Common.Models;
+using Yi.Framework.DtoModel.#ModelName#.#EntityName#;
+using Yi.Framework.Interface.Base.Crud;
+
+namespace Yi.Framework.Interface.#ModelName#
+{
+    public interface I#EntityName#Service : ICrudAppService<#EntityName#GetListOutput, long, #EntityName#CreateUpdateInput>
+    {
+        Task<PageModel<List<#EntityName#GetListOutput>>> PageListAsync(#EntityName#CreateUpdateInput input, PageParModel page);
+    }
+}

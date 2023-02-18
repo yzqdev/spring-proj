@@ -1,0 +1,20 @@
+using AutoMapper;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Yi.Framework.Model.#ModelName#.Entitys;
+
+namespace Yi.Framework.DtoModel.#ModelName#.#EntityName#.MapperConfig
+{
+    public class Suppli#ModelName#rofile:Profile
+    {
+        public Suppli#ModelName#rofile()
+        {
+            CreateMap<#EntityName#CreateUpdateInput, #EntityName#Entity>();
+            CreateMap<#EntityName#Entity, #EntityName#GetListOutput>();
+
+        }
+    }
+}

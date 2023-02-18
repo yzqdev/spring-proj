@@ -1,0 +1,8 @@
+{
+  "apollo": {
+    "AppId": "ApiMicroservice",
+    "Env": "DEV",
+    "MetaServer": "http://[xxxx]:18080",
+    "ConfigServer": [ "http://[xxxx]:18080" ]
+  }
+}

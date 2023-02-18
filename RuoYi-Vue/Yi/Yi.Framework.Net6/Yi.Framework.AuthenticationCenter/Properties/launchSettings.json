@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Yi.Framework.AuthenticationCenter": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:60124;http://localhost:60126"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Yi.Framework.ApiMicroservice": {
+      "commandName": "Project",
+      //开发环境根据情况是否自动启动浏览器
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "launchUrl": "swagger",
+      "applicationUrl": "http://localhost:19001;"
+    }
+  }
+}

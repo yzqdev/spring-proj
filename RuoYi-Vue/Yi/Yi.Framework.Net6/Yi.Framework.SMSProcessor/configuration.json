@@ -1,0 +1,8 @@
+{
+  "apollo": {
+    "AppId": "SMSProcessor",
+    "Env": "DEV",
+    "MetaServer": "http://119.91.207.67:18080",
+    "ConfigServer": [ "http://119.91.207.67:18080" ]
+  }
+}

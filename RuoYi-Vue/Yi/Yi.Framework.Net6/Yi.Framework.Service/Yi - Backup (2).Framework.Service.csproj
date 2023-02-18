@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="T4DaraContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Yi.Framework.Core\Yi.Framework.Core.csproj" />
+    <ProjectReference Include="..\Yi.Framework.DTOModel\Yi.Framework.DTOModel.csproj" />
+    <ProjectReference Include="..\Yi.Framework.Interface\Yi.Framework.Interface.csproj" />
+    <ProjectReference Include="..\Yi.Framework.Model\Yi.Framework.Model.csproj" />
+    <ProjectReference Include="..\Yi.Framework.Repository\Yi.Framework.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ServiceTemplate\" />
+  </ItemGroup>
+
+</Project>
