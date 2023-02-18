@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.http.HttpServletRequest;
+
+import cn.hutool.http.useragent.UserAgent;
+import cn.hutool.http.useragent.UserAgentUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -16,7 +19,6 @@ import com.ruoyi.common.utils.ip.IpUtils;
 import com.ruoyi.common.utils.uuid.IdUtils;
 import com.ruoyi.framework.redis.RedisCache;
 import com.ruoyi.framework.security.LoginUser;
-import eu.bitwalker.useragentutils.UserAgent;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -121,7 +123,7 @@ public class TokenService
     /**
      * 验证令牌有效期，相差不足20分钟，自动刷新缓存
      * 
-     * @param token 令牌
+     * @param loginUser 令牌
      * @return 令牌
      */
     public void verifyToken(LoginUser loginUser)
@@ -155,12 +157,13 @@ public class TokenService
      */
     public void setUserAgent(LoginUser loginUser)
     {
-        UserAgent userAgent = UserAgent.parseUserAgentString(ServletUtils.getRequest().getHeader("User-Agent"));
+
+        UserAgent userAgent = UserAgentUtil.parse(ServletUtils.getRequest().getHeader("User-Agent"));
         String ip = IpUtils.getIpAddr(ServletUtils.getRequest());
         loginUser.setIpaddr(ip);
         loginUser.setLoginLocation(AddressUtils.getRealAddressByIP(ip));
-        loginUser.setBrowser(userAgent.getBrowser().getName());
-        loginUser.setOs(userAgent.getOperatingSystem().getName());
+        loginUser.setBrowser(userAgent.getBrowser().toString()+userAgent.getVersion());
+        loginUser.setOs(userAgent.getOs().getName());
     }
     
     /**

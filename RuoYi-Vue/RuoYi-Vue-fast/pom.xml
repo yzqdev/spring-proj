@@ -135,12 +135,7 @@
             <version>${commons.fileupload.version}</version>
         </dependency>
 
-        <!-- 解析客户端操作系统、浏览器等 -->
-        <dependency>
-            <groupId>eu.bitwalker</groupId>
-            <artifactId>UserAgentUtils</artifactId>
-            <version>${bitwalker.version}</version>
-        </dependency>
+
 
         <!-- 阿里JSON解析器 -->
         <dependency>
@@ -177,6 +172,12 @@
             <groupId>com.github.oshi</groupId>
             <artifactId>oshi-core</artifactId>
             <version>${oshi.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/cn.hutool/hutool-all -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.12</version>
         </dependency>
 
         <!-- excel工具 -->
